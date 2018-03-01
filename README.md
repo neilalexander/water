@@ -17,6 +17,7 @@ See https://github.com/songgao/packets for functions for parsing various packets
 * Linux
 * Windows (experimental; APIs might change)
 * macOS (point-to-point TUN only)
+* OpenBSD
 
 ## Installation
 ```
