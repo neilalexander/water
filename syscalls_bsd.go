@@ -4,7 +4,6 @@ package water
 
 import (
 	"os"
-	"syscall"
 )
 
 const bsdTUNSIFINFO = (0x80000000) | ((4 & 0x1fff) << 16) | uint32(byte('t'))<<8 | 91
@@ -15,14 +14,6 @@ type tuninfo struct {
 	MTU      int16
 	Type     uint8
 	Dummy    uint8
-}
-
-func ioctl(fd uintptr, request uintptr, argp uintptr) error {
-	_, _, errno := syscall.Syscall(syscall.SYS_IOCTL, fd, request, argp)
-	if errno != 0 {
-		return os.NewSyscallError("ioctl", errno)
-	}
-	return nil
 }
 
 func newTAP(config Config) (ifce *Interface, err error) {

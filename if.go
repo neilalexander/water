@@ -3,6 +3,7 @@ package water
 import (
 	"errors"
 	"io"
+	"os"
 )
 
 // Interface is a TUN/TAP interface.
@@ -76,4 +77,9 @@ func (ifce *Interface) IsTAP() bool {
 // Name returns the interface name of ifce, e.g. tun0, tap1, tun0, etc..
 func (ifce *Interface) Name() string {
 	return ifce.name
+}
+
+// FD returns the underlying File object, which will be needed to ioctl later
+func (ifce *Interface) FD() *os.File {
+	return ifce.ReadWriteCloser.(*os.File)
 }
