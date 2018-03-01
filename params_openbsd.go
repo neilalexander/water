@@ -1,4 +1,4 @@
-// +build openbsd freebsd
+// +build openbsd
 
 package water
 

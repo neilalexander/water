@@ -1,20 +1,10 @@
-// +build openbsd freebsd
+// +build openbsd
 
 package water
 
 import (
 	"os"
 )
-
-const bsdTUNSIFINFO = (0x80000000) | ((4 & 0x1fff) << 16) | uint32(byte('t'))<<8 | 91
-const bsdTUNSIFMODE = (0x80000000) | ((4 & 0x1fff) << 16) | uint32(byte('t'))<<8 | 94
-
-type tuninfo struct {
-	BaudRate int
-	MTU      int16
-	Type     uint8
-	Dummy    uint8
-}
 
 func newTAP(config Config) (ifce *Interface, err error) {
 	if config.Name[:8] != "/dev/tap" {
